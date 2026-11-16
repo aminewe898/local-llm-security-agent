@@ -1,0 +1,143 @@
+# Hermes Agent — local Gemma 4 26B-A4B Heretic via LM Studio (tuned config: 65k ctx, 2 slots).
+# Edit with `hermes config edit`; the agent itself is blocked from writing this file.
+
+model:
+  provider: "lmstudio"
+  base_url: "http://127.0.0.1:1235/v1"
+  default: "gemma-4-26b-a4b-it-qat-heretic"
+  # context_length is read from the loaded LM Studio instance (65536).
+
+agent:
+  max_turns: 150
+  reasoning_effort: "low"          # Gemma thinks briefly; raise to "medium" for hard problems
+  disabled_toolsets:
+    - code_execution               # arbitrary Python bypasses the command guard; use terminal instead
+    - image_gen                    # cloud-only
+    - tts
+    - stt
+    - video
+    - video_gen
+    - x_search
+    - computer_use                 # desktop clicking is unreliable on a 26B local model
+    - kanban
+    - browser                      # browser-use engine not installed; pages are read via the local fetch MCP
+    - connections                  # Nous-hosted cloud connectors, not used here
+
+# Every side task runs on the local model too: nothing leaves the machine
+# (NVIDIA_API_KEY is in the environment, so "auto" could otherwise pick a cloud route).
+auxiliary:
+  vision: {provider: "main", model: "", timeout: 300}
+  web_extract: {provider: "main", model: "", timeout: 300, reasoning_effort: "none"}
+  title_generation: {enabled: true, model_upgrade_enabled: false, provider: "main", model: "", timeout: 120}
+  session_search: {provider: "main", model: "", timeout: 300, max_concurrency: 1}
+  compression: {provider: "main", model: "", timeout: 600, max_concurrency: 1}
+  background_review: {enabled: true, provider: "main", model: ""}
+  curator: {provider: "main", model: ""}
+  approval: {provider: "main", model: ""}
+
+fallback_providers: []
+
+tools:
+  tool_search:
+    enabled: "off"                 # load MCP tools (context7, fetch) up front: Gemma found them via
+                                   # tool_search but never called them while they were deferred
+
+terminal:
+  backend: "local"
+  cwd: "."
+  timeout: 180
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  nudge_interval: 8
+
+skills:
+  creation_nudge_interval: 12
+  guard_agent_created: true        # flagged skill writes ask first
+  disabled:                        # irrelevant on this machine, or hand work to other paid agents
+    - claude-code
+    - codex
+    - computer-use
+    - architecture-diagram
+    - ascii-video
+    - baoyu-infographic
+    - claude-design
+    - humanizer
+    - manim-video
+    - p5js
+    - popular-web-designs
+    - songwriting-and-ai-music
+    - email-inbox-triage
+    - himalaya
+    - youtube-content
+    - obsidian
+    - google-workspace
+    - teams-meeting-pipeline
+    - product-price-monitor
+    - competitor-news-monitor
+    - weekly-review-planning
+    - meeting-action-items
+    - simplify-code
+    - dogfood
+
+compression:
+  enabled: true
+  threshold: 0.60                  # compress at ~39k of 65k tokens
+  target_ratio: 0.25
+  protect_last_n: 16
+
+approvals:
+  mode: manual                     # dangerous commands always ask in the CLI
+  timeout: 300                     # unanswered = denied
+  cron_mode: deny                  # scheduled jobs never run anything risky unattended
+  single_query_mode: deny          # `hermes -z` one-shots: no human to ask -> refuse (default was approve!)
+  unattended_mode: deny            # gateway/webhook/API turns with no approval surface -> refuse
+  deny:                            # never, even under --yolo
+    - "*irm *|*iex*"
+    - "*iwr *|*iex*"
+    - "*curl *|*sh*"
+    - "*gh auth token*"
+    - "*.codex*config.toml*"
+
+  destructive_slash_confirm: false
+security:
+  protected_instruction_files: true
+  protected_instruction_extra_patterns:
+    - ".env"
+    - ".env.*"
+    - "*.pem"
+    - "*.key"
+    - "settings.json"
+    - "settings.local.json"
+    - "mcp.json"
+
+hooks:
+  pre_tool_call:
+    - matcher: "terminal|process|write_file|patch|read_file|search_files|browser.*|web_search"
+      command: "<YOUR-HOME>/AppData/Local/hermes/agent-hooks/guard.py"
+      timeout: 15
+      fail_closed: true
+hooks_auto_accept: true
+
+mcp_servers:
+  context7:                        # keyless, free library docs (same endpoint Claude Code uses)
+    url: "https://mcp.context7.com/mcp"
+  seckb:                           # offline ATT&CK, CWE, CAPEC, CISA KEV, OWASP + live NVD CVE lookup
+    command: "uv"
+    args: ["run", "--no-project", "--python", "3.13", "--with", "mcp==1.26.0", "python", "-I", "<YOUR-HOME>/tools/seckb/seckb_mcp.py"]
+    connect_timeout: 120
+  fetch:                           # local page reader: downloads from this PC, converts HTML to markdown
+    command: "uvx"
+    args: ["mcp-server-fetch==2026.8.18"]
+    connect_timeout: 120
+
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    offer_version: 2
+_config_version: 53
+onboarding:
+  seen:
+    busy_input_prompt: true

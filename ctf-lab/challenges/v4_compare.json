@@ -1,0 +1,30 @@
+[
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  },
+  {
+    "key": "basketManipulateChallenge",
+    "name": "Manipulate Basket",
+    "difficulty": 3,
+    "category": "Broken Access Control",
+    "objective": "Put an additional product into another user's shopping basket."
+  },
+  {
+    "key": "loginAdminChallenge",
+    "name": "Login Admin",
+    "difficulty": 2,
+    "category": "Injection",
+    "objective": "Log in with the administrator's user account."
+  },
+  {
+    "key": "basketAccessChallenge",
+    "name": "View Basket",
+    "difficulty": 2,
+    "category": "Broken Access Control",
+    "objective": "View another user's shopping basket."
+  }
+]

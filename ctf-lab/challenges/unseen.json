@@ -1,0 +1,23 @@
+[
+  {
+    "key": "loginJimChallenge",
+    "name": "Login Jim",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Log in with Jim's user account."
+  },
+  {
+    "key": "basketManipulateChallenge",
+    "name": "Manipulate Basket",
+    "difficulty": 3,
+    "category": "Broken Access Control",
+    "objective": "Put an additional product into another user's shopping basket."
+  },
+  {
+    "key": "changeProductChallenge",
+    "name": "Product Tampering",
+    "difficulty": 3,
+    "category": "Broken Access Control",
+    "objective": "Change the href of the link within the OWASP SSL Advanced Forensic Tool (O-Saft) product description into https://owasp.slack.com."
+  }
+]

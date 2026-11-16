@@ -1,0 +1,5 @@
+p2-t8-0.67 --ctx 32768 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.67 llama.tryMmap=false numParallelSessions=2 llama.cpuThreadPoolSize=8
+p2-t8-0.63 --ctx 32768 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.63 llama.tryMmap=false numParallelSessions=2 llama.cpuThreadPoolSize=8
+p2-t8-0.60 --ctx 32768 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.6 llama.tryMmap=false numParallelSessions=2 llama.cpuThreadPoolSize=8
+p2-t8-0.63-65k --ctx 65536 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.63 llama.tryMmap=false numParallelSessions=2 llama.cpuThreadPoolSize=8
+p2-t6-0.63 --ctx 32768 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.63 llama.tryMmap=false numParallelSessions=2

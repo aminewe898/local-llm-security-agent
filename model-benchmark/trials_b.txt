@@ -1,0 +1,8 @@
+nm-0.73 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.73 llama.tryMmap=false
+nm-0.70 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.7 llama.tryMmap=false
+nm-kv8-0.70 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.7 llama.tryMmap=false llama.flashAttention=true llama.kCacheQuantizationType=c:"q8_0" llama.vCacheQuantizationType=c:"q8_0"
+nm-b1024-0.73 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.73 llama.tryMmap=false llama.evalBatchSize=1024 llama.physicalBatchSize=1024
+nm-b2048-0.77 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.77 llama.tryMmap=false llama.evalBatchSize=2048 llama.physicalBatchSize=2048
+nm-ctx32k-0.73 --ctx 32768 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.73 llama.tryMmap=false
+nm-ctx65k-0.77 --ctx 65536 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.77 llama.tryMmap=false
+nm-ctx65k-kv8-0.73 --ctx 65536 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.73 llama.tryMmap=false llama.flashAttention=true llama.kCacheQuantizationType=c:"q8_0" llama.vCacheQuantizationType=c:"q8_0"

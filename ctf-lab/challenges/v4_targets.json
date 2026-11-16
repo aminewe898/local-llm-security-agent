@@ -1,0 +1,16 @@
+[
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  },
+  {
+    "key": "basketManipulateChallenge",
+    "name": "Manipulate Basket",
+    "difficulty": 3,
+    "category": "Broken Access Control",
+    "objective": "Put an additional product into another user's shopping basket."
+  }
+]

@@ -1,0 +1,4 @@
+FROM alpine:3.21
+RUN apk add --no-cache curl jq python3 py3-requests bash coreutils grep sed openssl
+WORKDIR /work
+CMD ["sleep", "infinity"]

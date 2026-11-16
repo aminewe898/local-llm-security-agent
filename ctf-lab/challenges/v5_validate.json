@@ -1,0 +1,30 @@
+[
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  },
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  },
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  },
+  {
+    "key": "christmasSpecialChallenge",
+    "name": "Christmas Special",
+    "difficulty": 4,
+    "category": "Injection",
+    "objective": "Order the Christmas special offer of 2014."
+  }
+]

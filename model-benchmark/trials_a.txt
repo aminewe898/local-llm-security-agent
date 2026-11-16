@@ -1,0 +1,10 @@
+moe-0.80 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.8
+moe-0.73 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.73
+moe-0.67 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=0.67
+moe-1-nommap llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.tryMmap=false
+moe-1-fa-on llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.flashAttention=true
+moe-1-fa-off llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.flashAttention=false
+moe-1-t4 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.cpuThreadPoolSize=4
+moe-1-t8 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.cpuThreadPoolSize=8
+moe-1-t12 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 llama.cpuThreadPoolSize=12
+moe-1-par1 llama.autoFit=false llama.acceleration.offloadRatio=1 numCpuExpertLayersRatio=1 numParallelSessions=1

@@ -1,0 +1,51 @@
+[
+  {
+    "key": "errorHandlingChallenge",
+    "name": "Error Handling",
+    "difficulty": 1,
+    "category": "Security Misconfiguration",
+    "objective": "Provoke an error that is neither very gracefully nor consistently handled."
+  },
+  {
+    "key": "directoryListingChallenge",
+    "name": "Confidential Document",
+    "difficulty": 1,
+    "category": "Sensitive Data Exposure",
+    "objective": "Access a confidential document."
+  },
+  {
+    "key": "exposedMetricsChallenge",
+    "name": "Exposed Metrics",
+    "difficulty": 1,
+    "category": "Sensitive Data Exposure",
+    "objective": "Find the endpoint that serves usage data to be scraped by a popular monitoring system."
+  },
+  {
+    "key": "loginAdminChallenge",
+    "name": "Login Admin",
+    "difficulty": 2,
+    "category": "Injection",
+    "objective": "Log in with the administrator's user account."
+  },
+  {
+    "key": "basketAccessChallenge",
+    "name": "View Basket",
+    "difficulty": 2,
+    "category": "Broken Access Control",
+    "objective": "View another user's shopping basket."
+  },
+  {
+    "key": "loginBenderChallenge",
+    "name": "Login Bender",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Log in with Bender's user account."
+  },
+  {
+    "key": "dbSchemaChallenge",
+    "name": "Database Schema",
+    "difficulty": 3,
+    "category": "Injection",
+    "objective": "Exfiltrate the entire DB schema definition via SQL Injection."
+  }
+]

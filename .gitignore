@@ -1,0 +1,38 @@
+# --- secrets / local state (never commit) ---
+*.env
+.env*
+*.key
+*.pem
+*.pfx
+*_token*
+*secret*
+config.yaml           # the live config may hold machine paths; config.example.yaml is tracked
+grant.json            # runtime permission-window state
+
+# --- Hermes agent profiles: session databases, logs, memories, embedded runtimes ---
+hermes-home*/
+**/state.db
+**/sessions/
+**/logs/
+**/memories/
+**/*.sqlite
+
+# --- generated / large / regenerable data ---
+security-kb/seckb.db  # ~13 MB, rebuild with build_index.py
+security-kb/data/     # ~130 MB of MITRE/OWASP/CISA downloads
+model-benchmark/runtime_*.txt
+**/results/run*.log
+**/results/*.err
+
+# --- python / tooling ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# --- os / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
