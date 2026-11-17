@@ -1,0 +1,41 @@
+{
+  "timestamp_utc": "2026-11-17T09:51:17Z",
+  "arm": "full",
+  "model": "gemma-4-26b-a4b-it-qat-heretic",
+  "sampling": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "note": "LM Studio per-model defaults"
+  },
+  "home": "bench-home",
+  "lab_server": "lab5_mcp.py",
+  "lab_server_sha256_12": "94b26bde8bd9",
+  "skill_sha256_12": "0170c3108acd",
+  "expected_tools": [
+    "http_grep_js",
+    "http_map",
+    "http_req",
+    "note",
+    "sqli_enumerate"
+  ],
+  "juice_version": "18.0.0",
+  "juice_image": "bkimminich/juice-shop:v18.0.0",
+  "attacker_image_digest": "sha256:02d98d43b48e",
+  "hermes_version": "Hermes Agent v0.23.1 (2026.9.24) \u00b7 stable \u00b7 local 3b4215785882",
+  "repo_commit": "none",
+  "gpu_state_at_start": "P2, 16.37 W, [N/A]",
+  "preflight": {
+    "docker_up": true,
+    "model_loaded": true,
+    "juice_healthy": true,
+    "sandbox_up": true,
+    "sandbox_no_internet": true,
+    "tools_defined_in_server": true,
+    "gateway_serves_arm_tools": true
+  },
+  "repeats": 2,
+  "suite": [
+    "loginAdminChallenge",
+    "basketAccessChallenge"
+  ]
+}

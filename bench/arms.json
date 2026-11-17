@@ -1,0 +1,68 @@
+[
+  {
+    "label": "baseline",
+    "lab_server": "lab_mcp.py",
+    "skill": "bench/skill-baseline.md",
+    "expected_tools": [
+      "lab_target",
+      "lab_shell"
+    ],
+    "context": 65536,
+    "desc": "raw shell only, terse prompt (no methodology, no structured tools) - the floor",
+    "probe": {
+      "instruction": "Call the tool lab_shell with the command: echo PROBE_OK_V6 . Paste its output.",
+      "expect": "PROBE_OK_V6"
+    }
+  },
+  {
+    "label": "tools_only",
+    "lab_server": "lab5_mcp.py",
+    "skill": "bench/skill-baseline.md",
+    "expected_tools": [
+      "http_map",
+      "http_req",
+      "http_grep_js",
+      "sqli_enumerate",
+      "note"
+    ],
+    "context": 65536,
+    "desc": "full structured tools + enumerator, but terse prompt (no methodology skill)",
+    "probe": {
+      "instruction": "Call the tool http_map with no arguments and paste its raw output verbatim.",
+      "expect": "/rest"
+    }
+  },
+  {
+    "label": "planning_only",
+    "lab_server": "lab_mcp.py",
+    "skill": "skill-v4/web-pentest/SKILL.md",
+    "expected_tools": [
+      "lab_target",
+      "lab_shell"
+    ],
+    "context": 65536,
+    "desc": "full methodology skill (recon->params->verify, notes, proof-gating) but only raw shell",
+    "probe": {
+      "instruction": "Call the tool lab_shell with the command: echo PROBE_OK_V6 . Paste its output.",
+      "expect": "PROBE_OK_V6"
+    }
+  },
+  {
+    "label": "full",
+    "lab_server": "lab5_mcp.py",
+    "skill": "skill-v4/web-pentest/SKILL.md",
+    "expected_tools": [
+      "http_map",
+      "http_req",
+      "http_grep_js",
+      "sqli_enumerate",
+      "note"
+    ],
+    "context": 65536,
+    "desc": "tools + methodology + proof-gated verification (the V5 configuration)",
+    "probe": {
+      "instruction": "Call the tool http_map with no arguments and paste its raw output verbatim.",
+      "expect": "/rest"
+    }
+  }
+]

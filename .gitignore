@@ -36,3 +36,8 @@ venv/
 Thumbs.db
 .idea/
 .vscode/
+
+# V6 benchmark home (Hermes profile, like hermes-home*)
+bench-home/
+results/bench/*.log
+results/bench/*.err

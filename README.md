@@ -66,8 +66,25 @@ The agent's **only** way to run anything is a sandboxed container with no intern
 | **V3** | structured HTTP tool (sessions, clean payloads) | IDOR solved; 2/3 unseen; 2–4× faster | tooling beats hand‑rolled `curl` for multi‑step |
 | **V4** | JS‑grep param discovery, loop guard, notes, proof‑gated claims | param discovery fixed; **false claims → 0** | reliability is a feature you engineer |
 | **V5** | `sqli_enumerate` (sqlmap‑style UNION automation) | **schema dump 0 → 3/3** | the "ceiling" was mechanical enumeration, not reasoning |
+| **V6** | a **reproducible, honest benchmark harness** (not more exploits) | single‑run "wins" were optimistic | measure distributions, not anecdotes |
 
-Along the way I found and fixed bugs that were **silently invalidating the benchmarks** — a pooled agent gateway serving stale tools, and a session token contaminating runs — and caught the agent making **false success claims three times**, every one exposed by the independent scoreboard.
+Along the way I found and fixed bugs that were **silently invalidating the benchmarks** — a pooled agent gateway serving stale tools, and a session token contaminating runs — and caught the agent making **false success claims** repeatedly, every one exposed by the independent scoreboard.
+
+### V6 — honest benchmarking ([`bench/`](bench/))
+
+V1–V5 each measured with **single runs**, which is how a lucky pass becomes a reported "solve." V6 rebuilds the
+measurement itself: a **fail‑loud preflight** (aborts if Docker, the model, the *correct* target, sandbox
+isolation, or the arm's tools aren't verified), **fresh target + sandbox every attempt** (clean solve
+attribution), **N repeats → k/N solve rate with confidence intervals**, a recorded **false‑claim rate**, and a
+full **reproducibility manifest** per run. Building it immediately caught three silent environment faults
+(broken Docker network, another app squatting on the target port, an env‑passthrough bug) — the exact class of
+error that quietly corrupts benchmarks.
+
+It also re‑contextualized an earlier "win": re‑measured with repeats, **View Basket is only ~50% reliable**, and
+on the failing run the agent **falsely claimed success** — invisible to a single‑run benchmark. The harness also
+ships a 2×2 **ablation** (tools × planning) on the *fixed* model + hardware to answer the project's research
+question: *how much autonomous capability can tools, planning, and verification recover from a small local model
+without upgrading it?* See [`bench/README.md`](bench/README.md) for the methodology and honest limitations.
 
 ---
 
